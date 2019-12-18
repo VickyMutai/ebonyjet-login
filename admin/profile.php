@@ -1,5 +1,6 @@
 <?php 
 include('../functions.php');
+include('../config.php');
 
 if (!isAdmin()) {
 	$_SESSION['msg'] = "You must log in first";
@@ -17,6 +18,7 @@ if (isset($_GET['logout'])) {
 <head>
 	<title>EBONYJET MEDIA</title>
 	<link rel="stylesheet" type="text/css" href="../css/style_register.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<style>
 	.header {
 		background: #003366;
@@ -51,15 +53,29 @@ if (isset($_GET['logout'])) {
 				<?php  if (isset($_SESSION['user'])) : ?>
 					<strong><?php echo $_SESSION['user']['username']; ?></strong>
 
-					<small>
+					<p>
 						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
 						<a href="profile.php?logout='1'" style="color: red;">logout</a>
                        &nbsp; <a href="create_user.php"> + add user</a>
-					</small>
+					</p>
 
 				<?php endif ?>
 			</div>
+		</div>
+		<div class="container">
+		<div class="row">
+		<div class="col-md-4">
+		<?php
+		$fetchVideos = mysqli_query($con, "SELECT location FROM podcasts ORDER BY podcast_id DESC");
+		while($row = mysqli_fetch_assoc($fetchVideos)){
+			$location = $row['location'];
+			echo "<div >";
+			echo "<video src='".$location."' controls width='320px' height='200px' >";
+			echo "</div>";
+		}?>
+
+		</div></div>
 		</div>
 	</div>
 </body>
