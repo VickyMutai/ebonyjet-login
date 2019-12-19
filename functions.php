@@ -58,7 +58,7 @@ function register(){
 
 			// get id of the created user
 			$logged_in_user_id = mysqli_insert_id($db);
-
+			$_SESSION['msg'] = "Registration was successful";
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
 			$_SESSION['success']  = "You are now logged in";
 			header('location: profile.php');				

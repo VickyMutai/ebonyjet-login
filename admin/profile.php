@@ -29,8 +29,11 @@ if (isset($_GET['logout'])) {
 	</style>
 </head>
 <body>
+
 	<div class="header">
-		<h2>Admin - Home Page</h2>
+		<p><h2><a href="profile.php">Admin - Home Page</a></h2> <h4><a href="create_user.php" style="color: white;"> + add new user</a></h4>
+		<h3><a href="profile.php?logout='1'" style="color: white;">logout</a></p></h3>
+
 	</div>
 	<div class="content">
 		<!-- notification message -->
@@ -56,25 +59,27 @@ if (isset($_GET['logout'])) {
 					<p>
 						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
-						<a href="profile.php?logout='1'" style="color: red;">logout</a>
-                       &nbsp; <a href="create_user.php"> + add user</a>
+                       &nbsp; 
 					</p>
 
 				<?php endif ?>
 			</div>
 		</div>
+		<hr>
 		<div class="container">
 		<div class="row">
 		<div class="col-md-4">
+		<div>
 		<?php
 		$fetchVideos = mysqli_query($con, "SELECT location FROM podcasts ORDER BY podcast_id DESC");
 		while($row = mysqli_fetch_assoc($fetchVideos)){
 			$location = $row['location'];
 			echo "<div >";
-			echo "<video src='".$location."' controls width='320px' height='200px' >";
+			echo "<video src='../".$location."' controls width='320px' height='200px' >";
 			echo "</div>";
-		}?>
-
+		}
+		?>
+    </div>
 		</div></div>
 		</div>
 	</div>

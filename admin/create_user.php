@@ -15,8 +15,7 @@
 </head>
 <body>
 	<div class="header">
-		<h2>Admin - create user</h2>
-	</div>
+	<h2><a href="profile.php" style="color:white;">Admin - Home Page</a></h2>	</div>
 	
 	<form method="post" action="create_user.php">
 

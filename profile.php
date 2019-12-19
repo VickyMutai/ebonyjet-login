@@ -5,6 +5,10 @@
 		$_SESSION['msg'] = "You must log in first";
 		header('location: index.php');
 	}
+	if (isset($_SESSION['msg'])) { 
+		echo '<script>alert("Registration Successful")</script>';
+		$_SESSION['msg'] = "";
+		}
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,7 +57,8 @@
 </head>
 <body>
 	<div class="header">
-		<h2>Home Page</h2>
+		<h2>EBONYJET MEDIA</h2>
+		<h3><a href="index.php?logout='1'" style="color: white;">logout</a></h3>
 	</div>
 	<div class="content">
 		<!-- notification message -->
@@ -69,28 +74,22 @@
 		<?php endif ?>
 		<!-- logged in user information -->
 		<div class="profile_info">
-			<img src="img/profile.png"  >
 			<div>
 				<?php  if (isset($_SESSION['user'])) : ?>
-					<strong><?php echo $_SESSION['user']['username']; ?></strong>
-
-					<p>
-						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
-						<br>
-						<a href="index.php?logout='1'" style="color: red;">logout</a>
-					</p>
-					<br>
-
+					<p> Welcome back <strong><?php echo $_SESSION['user']['username']; ?></strong></p>
 				<?php endif ?>
 			</div>
 		</div>
 	</div>
+	<br><br>
 	<div class="container">
 	<form method="post" action="" enctype='multipart/form-data'>
-	<p><b>Hi, Kindly upload your podcast here!</b></p>
-	<br/>
+	<p><b>Upload your podcast here!</b></p>
+	<p style="font-size:40px;">
       <input type='file' name='file' />
-      <input type='submit' value='Upload' name='but_upload'>
+	  <br>
+      <input class="btn btn-info" type='submit' value='Upload' name='but_upload'>
+	  </p>
     </form>	
 	</div>
 </body>

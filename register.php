@@ -34,5 +34,6 @@
 		Already a member? <a href="index.php">Sign in</a>
 	</p>
 </form>
+<p style="margin-left: 43%;margin-top:10px;font-size:18px;"><b>&copy; 2019 EbonyJet Media</b></p>
 </body>
 </html>
