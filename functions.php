@@ -61,8 +61,9 @@ function register(){
 			$_SESSION['msg'] = "Registration was successful";
 			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
 			$_SESSION['success']  = "You are now logged in";
-			header('location: profile.php');				
-		}
+			echo '<script>alert("Upload successful")</script>';	
+			header('location: profile.php');
+	}
 	}
 }
 

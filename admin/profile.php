@@ -71,12 +71,36 @@ if (isset($_GET['logout'])) {
 		<div class="col-md-4">
 		<div>
 		<?php
-		$fetchVideos = mysqli_query($con, "SELECT location FROM podcasts ORDER BY podcast_id DESC");
+		$fetchVideos = mysqli_query($con, "SELECT location,user_name FROM my_podcast ORDER BY podcast_id DESC");
 		while($row = mysqli_fetch_assoc($fetchVideos)){
 			$location = $row['location'];
+			$user_name = $row['user_name'];
 			echo "<div >";
 			echo "<video src='../".$location."' controls width='320px' height='200px' >";
-			echo "</div>";
+			echo "</div> <h5>Uploaded by  <strong>".$user_name."</strong></h5>";
+		}
+		?>
+		<?php
+        $fetchVideos = mysqli_query($con, "SELECT * FROM my_podcast");
+
+		while($row = mysqli_fetch_assoc($fetchVideos)){
+            $current = $_SESSION['user']['username'];
+			$location = $row['location'];
+			$user_name = $row['user_name'];
+			$logo = $row['logo'];
+			$type = $row['filetype'];
+                if ($current === $user_name){
+					if($type === 'video'){
+                    echo "<div >";
+					echo "<video src='../".$location."' controls width='320px' height='200px' >";
+					echo "</div> <h5>Uploaded by  <strong>".$user_name."</strong></h5>";
+					}else{
+						echo "<div >";
+						echo "<audio src='../".$location."' controls>";
+						echo "</div> <p>Uploaded by <strong>".$user_name."</strong></p>";
+					}
+                }
+               
 		}
 		?>
     </div>
